@@ -1,5 +1,5 @@
-#ifndef VIV2_ALIAS
-#define VIV2_ALIAS
+#ifndef VIV2_ALIAS_H
+#define VIV2_ALIAS_H
 
 #include <stdint.h>
 #include <stddef.h>
