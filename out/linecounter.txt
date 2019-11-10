@@ -1,0 +1,35 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.2
+-------------------------------------------------------------------------------
+count time : 2019-11-10 14:17:40
+count workspace : /home/lunarcoffee/Development/c/Viv2
+total files : 13
+total code lines : 252
+total comment lines : 4
+total blank lines : 71
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |            .sh|              8|              1|              3|    3.2|
+   |            .ld|             18|              0|              5|    7.1|
+   |            .md|              1|              0|              0|   0.40|
+   |             .c|             67|              3|             17|     27|
+   |             .h|             45|              0|             13|     18|
+   |           .asm|            113|              0|             33|     45|
+   -------------------------------------------------------------------------
+bingen.sh, code is 8, comment is 1, blank is 3.
+linker.ld, code is 18, comment is 0, blank is 5.
+README.md, code is 1, comment is 0, blank is 0.
+src/include/drivers/vga/tvga.h, code is 30, comment is 0, blank is 8.
+src/include/lib/alias.h, code is 15, comment is 0, blank is 5.
+src/kernel/boot/boot.asm, code is 27, comment is 0, blank is 9.
+src/kernel/boot/gdt.asm, code is 35, comment is 0, blank is 7.
+src/kernel/boot/idt.asm, code is 45, comment is 0, blank is 16.
+src/kernel/drivers/keyboard/keyboard.asm, code is 6, comment is 0, blank is 1.
+src/kernel/drivers/keyboard/keyboard.c, code is 7, comment is 0, blank is 2.
+src/kernel/drivers/vga/tvga.c, code is 49, comment is 3, blank is 12.
+src/kernel/main.c, code is 11, comment is 0, blank is 3.
+viv2.bin, it is a binary file.
+===============================================================================

@@ -12,6 +12,10 @@ void tvga_init(void) {
     buffer = (u16*) 0xB8000;
     default_color = TVGA_COLOR(TVGA_COLOR_LIGHT_BROWN, TVGA_COLOR_BLUE);
 
+    // for (isz x = 0; x < TW; x++)
+    //     for (isz y = 0; y < TH; y++)
+    //         buffer[y * TW + x] = TVGA_CELL(' ', default_color);
+
     for (isz i = 0; i < TW * TH; i++)
         tvga_putc(' ');
 

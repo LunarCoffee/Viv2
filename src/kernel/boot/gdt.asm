@@ -28,7 +28,6 @@ gdtr:
 
 global load_gdt
 load_gdt:
-    cli
     lgdt [gdtr]
     jmp 8h:reload
     ret

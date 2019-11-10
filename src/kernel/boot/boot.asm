@@ -12,7 +12,7 @@ section .bss
 
 align 16
 stack_b:
-    resb 4000h ; 16 KiB stack.
+    resb 4000h  ; 16 KiB stack.
 stack_t:
 
 section .text
@@ -20,12 +20,16 @@ section .text
 global _start
 _start:
     mov esp, stack_t
+    cli
 
     extern load_gdt
-    call load_gdt
+    call   load_gdt
+
+    extern load_idt
+    call   load_idt
 
     extern k_main
-    call k_main
+    call   k_main
 
     cli
 l:  hlt
