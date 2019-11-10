@@ -12,7 +12,6 @@ void tvga_init(void) {
     buffer = (u16*) 0xB8000;
     default_color = TVGA_COLOR(TVGA_COLOR_LIGHT_BROWN, TVGA_COLOR_BLUE);
 
-    // Ensure the screen is cleared.
     for (isz i = 0; i < TW * TH; i++)
         tvga_putc(' ');
 
@@ -54,11 +53,8 @@ void tvga_scroll(void) {
     row--;
     col = 0;
 
-    // Shift everything up.
     for (isz i = 0; i < TW * (TH - 1); i++)
         buffer[i] = buffer[i + TW];
-
-    // Clear bottom row.
     for (isz i = TW * (TH - 1); i < TW * TH; i++)
         buffer[i] = TVGA_CELL(' ', default_color);
 }

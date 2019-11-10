@@ -21,6 +21,9 @@ global _start
 _start:
     mov esp, stack_t
 
+    extern load_gdt
+    call load_gdt
+
     extern k_main
     call k_main
 

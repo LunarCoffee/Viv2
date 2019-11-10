@@ -3,6 +3,7 @@
 
 int k_main() {
     tvga_init();
+    
     tvga_puts("Hello, Viv2!\n");
     tvga_puts("Hello, Viv2!");
     tvga_puts("Hello, V\niv2!\n");
