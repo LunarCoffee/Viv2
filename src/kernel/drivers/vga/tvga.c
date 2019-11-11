@@ -1,8 +1,6 @@
 #include "../../../include/drivers/vga/tvga.h"
+#include "../../../include/drivers/vga/tvga_cursor.h"
 #include "../../../include/lib/ports.h"
-
-static void enable_cursor(void);
-static void reposition_cursor(void);
 
 static const isz TW = 80;
 static const isz TH = 25;
@@ -62,7 +60,7 @@ void tvga_putcc(u8 ch, u16 color) {
                 tvga_scroll();
         }
     }
-	reposition_cursor();
+	reposition_cursor(row * TW + col);
 }
 
 inline void tvga_puts(const char* s) {
@@ -82,22 +80,4 @@ void tvga_scroll(void) {
         vram[i] = vram[i + TW];
     for (isz i = TW * (TH - 1); i < TW * TH; i++)
         vram[i] = TVGA_CELL(' ', default_color);
-}
-
-static void enable_cursor(void) {
-    // Make the cursor fill most of the scanline height.
-    outb(0x3D4, 0x0A);
-	outb(0x3D5, (inb(0x3D5) & 0xC0) | 0);
-	outb(0x3D4, 0x0B);
-	outb(0x3D5, (inb(0x3D5) & 0xE0) | 0xD);
-}
-
-static void reposition_cursor(void) {
-    u16 pos = row * TW + col;
-
-    // Move the cursor directly in front of the last typed character. 
-	outb(0x3D4, 0xF);
-	outb(0x3D5, pos & 0xFF);
-	outb(0x3D4, 0xE);
-	outb(0x3D5, (pos >> 8) & 0xFF);
 }

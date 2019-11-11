@@ -3,6 +3,7 @@
         "alias.h": "c",
         "ports.h": "c",
         "tvga.h": "c",
-        "keyboard.h": "c"
+        "keyboard.h": "c",
+        "tvga_cursor.h": "c"
     }
 }
