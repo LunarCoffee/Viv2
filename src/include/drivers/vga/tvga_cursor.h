@@ -4,6 +4,8 @@
 #include "../../lib/alias.h"
 
 void enable_cursor(void);
+void disable_cursor(void);
+
 void reposition_cursor(u16 pos);
 
 #endif

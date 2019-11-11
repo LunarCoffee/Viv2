@@ -67,7 +67,7 @@ static u8 caps_lock_char_table[256] = {
     0
 };
 
-static bool keyboard_enabled = true;
+static bool keyboard_enabled;
 static bool shift_down;
 static bool caps_lock_on;
 
@@ -87,7 +87,7 @@ void keyboard_strike(void) {
         shift_down = false;
         break;
     case K_CAPSLOCK:
-        caps_lock_on = !caps_lock_on;    
+        caps_lock_on ^= 1;    
     }
 
     // Key is released.
@@ -105,4 +105,12 @@ u8 get_char(key_code kc) {
     if (caps_lock_on)
         return caps_lock_char_table[kc];
     return char_table[kc];
+}
+
+void enable_keyboard(void) {
+    keyboard_enabled = true;
+}
+
+void disable_keyboard(void) {
+    keyboard_enabled = false;
 }

@@ -50,4 +50,7 @@ typedef enum {
 
 u8 get_char(key_code kc);
 
+void enable_keyboard(void);
+void disable_keyboard(void);
+
 #endif

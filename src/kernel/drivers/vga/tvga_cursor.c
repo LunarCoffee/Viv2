@@ -9,6 +9,11 @@ void enable_cursor(void) {
 	outb(0x3D5, (inb(0x3D5) & 0xE0) | 0xD);
 }
 
+void disable_cursor(void) {
+	outb(0x3D4, 0x0A);
+	outb(0x3D5, 0x20);
+}
+
 void reposition_cursor(u16 pos) {
     // Move the cursor directly in front of the last typed character. 
 	outb(0x3D4, 0xF);
