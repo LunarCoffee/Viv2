@@ -67,6 +67,27 @@ static u8 caps_lock_char_table[256] = {
     0
 };
 
+static u8 shift_caps_lock_char_table[256] = {
+    0,  0, '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+    '_', '+', '\b', '\t',     
+    'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{', '}', 
+    '\n', 0,
+    'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ':',
+    '"', '~', 0, '|',
+    'z', 'x', 'c', 'v', 'b', 'n', 'm', '<', '>', '?', 
+    0, 
+    '*',
+    0,
+    ' ',
+    0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0,
+    '7', '8', '9', '-',
+    '4', '5', '6', '+',
+    '1', '2', '3', '0', '.',
+    0
+};
+
 static bool keyboard_enabled;
 static bool shift_down;
 static bool caps_lock_on;
@@ -80,7 +101,7 @@ void keyboard_strike(void) {
     switch (scan_code) {
     case K_LSHIFT:
     case K_RSHIFT:
-        shift_down = true;
+        shift_down = true; 
         break;
     case 0xAA:
     case 0xB6:
@@ -100,6 +121,8 @@ void keyboard_strike(void) {
 }
 
 u8 get_char(key_code kc) {
+    if (shift_down && caps_lock_on)
+        return shift_caps_lock_char_table[kc];
     if (shift_down)
         return shift_char_table[kc];
     if (caps_lock_on)
