@@ -3,11 +3,7 @@
 
 int k_main() {
     tvga_init();
-    
-    tvga_puts("Hello, Viv2!\n");
-    tvga_puts("Hello, Viv2!");
-    tvga_puts("Hello, V\niv2!\n");
-    tvga_puts("asidjaoisdjoiasjdioasjdiojiofjeiopgjiojzsdiojgfiobjawiopefniosdjfqwiopjernbiojwpdijfibw");
+    tvga_puts("Viv2 0.1.0. GDT, IDT loaded.\n");
     
     while (true)
         asm("hlt");

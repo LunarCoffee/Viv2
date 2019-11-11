@@ -123,6 +123,133 @@
                     "comment": 0
                 }
             ]
+        },
+        {
+            "version": "0.2.2",
+            "counttime": "2019-11-10 15:05:33",
+            "filesum": 14,
+            "codesum": 303,
+            "commentsum": 6,
+            "blanksum": 80,
+            "statistics": {
+                ".md": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".sh": {
+                    "code": 8,
+                    "comment": 1,
+                    "blank": 3
+                },
+                ".ld": {
+                    "code": 18,
+                    "comment": 0,
+                    "blank": 5
+                },
+                ".c": {
+                    "code": 76,
+                    "comment": 4,
+                    "blank": 21
+                },
+                ".h": {
+                    "code": 87,
+                    "comment": 1,
+                    "blank": 18
+                },
+                ".asm": {
+                    "code": 113,
+                    "comment": 0,
+                    "blank": 33
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 1,
+                    "filename": "bingen.sh"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "linker.ld"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 42,
+                    "comment": 1,
+                    "filename": "src/include/drivers/keyboard/keyboard.h"
+                },
+                {
+                    "blank": 8,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/include/drivers/vga/tvga.h"
+                },
+                {
+                    "blank": 5,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/include/lib/alias.h"
+                },
+                {
+                    "blank": 9,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src/kernel/boot/boot.asm"
+                },
+                {
+                    "blank": 7,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/kernel/boot/gdt.asm"
+                },
+                {
+                    "blank": 16,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/kernel/boot/idt.asm"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/kernel/drivers/keyboard/keyboard.asm"
+                },
+                {
+                    "blank": 6,
+                    "code": 16,
+                    "comment": 1,
+                    "filename": "src/kernel/drivers/keyboard/keyboard.c"
+                },
+                {
+                    "blank": 12,
+                    "code": 49,
+                    "comment": 3,
+                    "filename": "src/kernel/drivers/vga/tvga.c"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/kernel/main.c"
+                },
+                {
+                    "filename": "viv2.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                }
+            ]
         }
     ]
 }

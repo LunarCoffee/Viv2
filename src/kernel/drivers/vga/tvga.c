@@ -1,26 +1,27 @@
 #include "../../../include/drivers/vga/tvga.h"
+#include "../../../include/lib/ports.h"
+
+static void enable_cursor(void);
+static void reposition_cursor(void);
 
 static const isz TW = 80;
 static const isz TH = 25;
 
-static u16* buffer;
-static isz row;
-static isz col;
+static u16* vram;
+static i8 row;
+static i8 col;
 static u8 default_color;
 
 void tvga_init(void) {
-    buffer = (u16*) 0xB8000;
-    default_color = TVGA_COLOR(TVGA_COLOR_LIGHT_BROWN, TVGA_COLOR_BLUE);
-
-    // for (isz x = 0; x < TW; x++)
-    //     for (isz y = 0; y < TH; y++)
-    //         buffer[y * TW + x] = TVGA_CELL(' ', default_color);
+    vram = (u16*) 0xB8000;
+    default_color = TVGA_COLOR(TVGA_COLOR_WHITE, TVGA_COLOR_BLACK);
 
     for (isz i = 0; i < TW * TH; i++)
         tvga_putc(' ');
 
     row = 0;
     col = 0;
+    enable_cursor();
 }
 
 inline void tvga_putc(u8 ch) {
@@ -28,20 +29,40 @@ inline void tvga_putc(u8 ch) {
 }
 
 void tvga_putcc(u8 ch, u16 color) {
-    if (ch == '\n') {
-        col = 0;
+    switch (ch) {
+    case '\n':
+        // Mark rest of row for deletion.
+        for (isz i = TW - col; i > 1; i--)
+            tvga_putcc(0xFF, color);
+
         if (++row == TH)
             tvga_scroll();
-    } else if (ch == '\r') {
+    case '\r':
         col = 0;
-    } else {
-        buffer[row * TW + col] = TVGA_CELL(ch, color);
+        break;
+    case '\b':
+        vram[row * TW + col - 1] = TVGA_CELL(' ', color);
+        if (--col < 0) {
+            col = TW - 1;
+            if (--row < 0) {
+                row = 0;
+                col = 0;
+            }
+        }
+
+        // Delete characters which are marked for deletion.
+        if (row + col > 0 && (vram[row * TW + col - 1] & 0xFF) == 0xFF)
+            tvga_putcc('\b', color);
+        break;
+    default:
+        vram[row * TW + col] = TVGA_CELL(ch, color);
         if (++col == TW) {
             col = 0;
             if (++row == TH)
                 tvga_scroll();
         }
     }
+	reposition_cursor();
 }
 
 inline void tvga_puts(const char* s) {
@@ -58,7 +79,25 @@ void tvga_scroll(void) {
     col = 0;
 
     for (isz i = 0; i < TW * (TH - 1); i++)
-        buffer[i] = buffer[i + TW];
+        vram[i] = vram[i + TW];
     for (isz i = TW * (TH - 1); i < TW * TH; i++)
-        buffer[i] = TVGA_CELL(' ', default_color);
+        vram[i] = TVGA_CELL(' ', default_color);
+}
+
+static void enable_cursor(void) {
+    // Make the cursor fill most of the scanline height.
+    outb(0x3D4, 0x0A);
+	outb(0x3D5, (inb(0x3D5) & 0xC0) | 0);
+	outb(0x3D4, 0x0B);
+	outb(0x3D5, (inb(0x3D5) & 0xE0) | 0xD);
+}
+
+static void reposition_cursor(void) {
+    u16 pos = row * TW + col;
+
+    // Move the cursor directly in front of the last typed character. 
+	outb(0x3D4, 0xF);
+	outb(0x3D5, pos & 0xFF);
+	outb(0x3D4, 0xE);
+	outb(0x3D5, (pos >> 8) & 0xFF);
 }

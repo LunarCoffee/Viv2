@@ -6,7 +6,7 @@
 #define TVGA_COLOR(fg, bg) fg | bg << 4
 #define TVGA_CELL(ch, color) (u16) (ch | color << 8)
 
-enum tvga_color {
+typedef enum {
     TVGA_COLOR_BLACK,
 	TVGA_COLOR_BLUE,
 	TVGA_COLOR_GREEN,
@@ -23,7 +23,7 @@ enum tvga_color {
 	TVGA_COLOR_LIGHT_MAGENTA,
 	TVGA_COLOR_LIGHT_BROWN,
 	TVGA_COLOR_WHITE
-};
+} tvga_color;
 
 void tvga_init(void);
 
